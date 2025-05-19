@@ -65,3 +65,9 @@ sudo apt update && sudo apt upgrade -y
 # ==========================================
 info "Installing Depedencies..."
 curl -L -o depedency.sh https://raw.githubusercontent.com/PemburuSurya/gaianet/refs/heads/main/depedency.sh && chmod +x depedency.sh && sudo ./depedency.sh
+
+echo "==================================="
+echo -e "${PURPLE}           EZ Labs Nodes       ${NC}"
+echo "==================================="
+echo -e "${GREEN}    Thanks for using this script!${NC}"
+echo "==================================="
