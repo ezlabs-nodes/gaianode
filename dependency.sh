@@ -23,9 +23,29 @@ BOLD_CYAN='\033[1;36m'
 BOLD_WHITE='\033[1;37m'
 
 # ==========================================
+# Helper Functions
+# ==========================================
+function info() {
+    echo -e "${BOLD_CYAN}[INFO]${NC} ${1}"
+}
+
+function success() {
+    echo -e "${BOLD_GREEN}[SUCCESS]${NC} ${1}"
+}
+
+function warning() {
+    echo -e "${BOLD_YELLOW}[WARNING]${NC} ${1}"
+}
+
+function error() {
+    echo -e "${BOLD_RED}[ERROR]${NC} ${1}"
+}
+
+# ==========================================
 # Banner Display
 # ==========================================
 function display_banner() {
+    clear
     echo "========================================"
     echo -e "${YELLOW} Simple script is made by EZ-LABS${NC}"
     echo -e "-------------------------------------"
@@ -51,21 +71,29 @@ function display_banner() {
 }
 
 # ==========================================
-# Display Banner
+# Main Script Execution
 # ==========================================
 display_banner
 
-# ==========================================
 # System Update
-# ==========================================
 info "Updating system packages..."
 sudo apt update && sudo apt upgrade -y
-# ==========================================
-# Optimize your VPS
-# ==========================================
-info "Installing Depedencies..."
-curl -L -o depedency.sh https://raw.githubusercontent.com/PemburuSurya/gaianet/refs/heads/main/depedency.sh && chmod +x depedency.sh && sudo ./depedency.sh
+if [ $? -eq 0 ]; then
+    success "System packages updated successfully!"
+else
+    error "Failed to update system packages"
+fi
 
+# Install Dependencies
+info "Installing Dependencies..."
+curl -L -o dependency.sh https://raw.githubusercontent.com/PemburuSurya/gaianet/refs/heads/main/dependency.sh && chmod +x dependency.sh && sudo ./dependency.sh
+if [ $? -eq 0 ]; then
+    success "Dependencies installed successfully!"
+else
+    error "Failed to install dependencies"
+fi
+
+# Final Message
 echo "==================================="
 echo -e "${PURPLE}           EZ Labs Nodes       ${NC}"
 echo "==================================="
