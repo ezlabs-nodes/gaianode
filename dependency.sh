@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # ==========================================
@@ -23,29 +24,9 @@ BOLD_CYAN='\033[1;36m'
 BOLD_WHITE='\033[1;37m'
 
 # ==========================================
-# Helper Functions
-# ==========================================
-function info() {
-    echo -e "${BOLD_CYAN}[INFO]${NC} ${1}"
-}
-
-function success() {
-    echo -e "${BOLD_GREEN}[SUCCESS]${NC} ${1}"
-}
-
-function warning() {
-    echo -e "${BOLD_YELLOW}[WARNING]${NC} ${1}"
-}
-
-function error() {
-    echo -e "${BOLD_RED}[ERROR]${NC} ${1}"
-}
-
-# ==========================================
 # Banner Display
 # ==========================================
 function display_banner() {
-    clear
     echo "========================================"
     echo -e "${YELLOW} Simple script is made by EZ-LABS${NC}"
     echo -e "-------------------------------------"
@@ -71,29 +52,35 @@ function display_banner() {
 }
 
 # ==========================================
-# Main Script Execution
+# Display Banner
 # ==========================================
 display_banner
 
+# ==========================================
 # System Update
+# ==========================================
 info "Updating system packages..."
 sudo apt update && sudo apt upgrade -y
-if [ $? -eq 0 ]; then
-    success "System packages updated successfully!"
-else
-    error "Failed to update system packages"
-fi
 
-# Install Dependencies
-info "Installing Dependencies..."
-curl -L -o dependency.sh https://raw.githubusercontent.com/PemburuSurya/gaianet/refs/heads/main/dependency.sh && chmod +x dependency.sh && sudo ./dependency.sh
-if [ $? -eq 0 ]; then
-    success "Dependencies installed successfully!"
-else
-    error "Failed to install dependencies"
-fi
-
-# Final Message
+# ==========================================
+# Optimize your VPS
+# ==========================================
+info "Optimize your VPS by EZ Labs Node..."
+curl -L -o optimize.sh https://raw.githubusercontent.com/PemburuSurya/autoinstall/main/optimize.sh && chmod +x optimize.sh && sudo ./optimize.sh
+# ==========================================
+info "Update your DNS..."
+curl -L -o dns.sh https://raw.githubusercontent.com/PemburuSurya/autoinstall/main/dns.sh && chmod +x dns.sh && sudo ./dns.sh
+# ==========================================
+# Install Gensyn Dependencies by Ez Labs Node
+# ==========================================
+info "Gensyn Depedencies installing..."
+# Install Gensyn Dependencies V1
+curl -L -o gensyn0.sh https://raw.githubusercontent.com/PemburuSurya/autoinstall/main/gensyn0.sh && chmod +x gensyn0.sh && ./gensyn0.sh
+# Install Gensyn Dependencies V2
+curl -L -o gensyn.sh https://raw.githubusercontent.com/PemburuSurya/autoinstall/main/gensyn.sh && chmod +x gensyn.sh && ./gensyn.sh
+source ~/.bashrc
+# Install Gensyn Dependencies V2
+curl -L -o swap.sh https://raw.githubusercontent.com/PemburuSurya/autoinstall/main/swap.sh && chmod +x swap.sh && sudo ./swap.sh
 echo "==================================="
 echo -e "${PURPLE}           EZ Labs Nodes       ${NC}"
 echo "==================================="
